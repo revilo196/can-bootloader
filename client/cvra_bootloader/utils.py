@@ -142,6 +142,10 @@ def read_can_datagrams(fdesc):
 
             if frame.extended:
                 continue
+            
+            #filter frames not address to the bootloader
+            if frame.id >= 0x100:
+                continue
 
             src = frame.id & (0x7f)
             buf[src] += frame.data
