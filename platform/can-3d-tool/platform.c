@@ -48,15 +48,14 @@ void can_interface_init(void)
 
 void fault_handler(void)
 {
-    // while(1); // debug    
+    // while(1); // debug
     reboot_system(BOOT_ARG_START_BOOTLOADER_NO_TIMEOUT);
 }
 
 void platform_main(int arg)
 {
-    
     //If external 8MHz on PC14/PC15
-	rcc_clock_setup_in_hse_8mhz_out_72mhz();
+    rcc_clock_setup_in_hse_8mhz_out_72mhz();
 
     //Activate PORTA
     rcc_periph_clock_enable(RCC_GPIOA);
@@ -70,7 +69,6 @@ void platform_main(int arg)
     gpio_set(GPIOA, GPIO_CAN1_RX); //pull up
     /* Remap the can to pin PA11 and PA12 , sould already be by default */
     gpio_primary_remap(AFIO_MAPR_SWJ_CFG_FULL_SWJ, AFIO_MAPR_CAN1_REMAP_PORTA); //Can sur port A pin 11/12
-
 
     // configure timeout of 10000 milliseconds on a 72Mhz
     timeout_timer_init(72000000, 10000);

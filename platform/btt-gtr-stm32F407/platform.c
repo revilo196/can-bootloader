@@ -89,7 +89,7 @@ static void reboot_blink(void)
 }
 
 void platform_main(int arg)
-{   
+{
     //8 MHz External Clock
     rcc_clock_setup_hse_3v3(&hse_8mhz_3v3[CLOCK_3V3_168MHZ]);
 
@@ -97,17 +97,15 @@ void platform_main(int arg)
     rcc_periph_clock_enable(RCC_GPIOH);
     rcc_periph_clock_enable(RCC_GPIOI);
 
-
     // CAN pin TX PH13
     gpio_mode_setup(GPIOH, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIOH_CAN1_TX);
     gpio_set_output_options(GPIOH, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIOH_CAN1_TX);
-    gpio_set_af(GPIOH, GPIO_AF9 , GPIOH_CAN1_TX); //AF9 is CAN
-
+    gpio_set_af(GPIOH, GPIO_AF9, GPIOH_CAN1_TX); //AF9 is CAN
 
     // CAN pin RX PI9
     gpio_mode_setup(GPIOI, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIOI_CAN1_RX);
     gpio_set_output_options(GPIOI, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIOI_CAN1_RX);
-    gpio_set_af(GPIOH, GPIO_AF9 , GPIOI_CAN1_RX); //AF9 is CAN
+    gpio_set_af(GPIOH, GPIO_AF9, GPIOI_CAN1_RX); //AF9 is CAN
 
     // LED on
     gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIOA_LED_ALL);
